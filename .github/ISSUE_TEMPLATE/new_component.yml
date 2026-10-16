@@ -1,0 +1,42 @@
+name: New component idea
+description: Suggest a crazy new component, game or command
+labels: ["new component"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+      placeholder: "Tic-Tac-Toe"
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Game
+        - Random event / prank
+        - Weird command
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What does it do?
+      description: Describe the idea. What does the user see and do?
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety
+      description: Confirm it stays inside Rhino/Grasshopper and explain how it can be stopped. See the safety rules in CONTRIBUTING.md.
+    validations:
+      required: true
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Want to build it?
+      options:
+        - label: I would like to work on this myself

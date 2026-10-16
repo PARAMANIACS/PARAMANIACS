@@ -1,0 +1,25 @@
+# Visual Studio / .NET
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.cache
+*.log
+packages/
+TestResults/
+*.nupkg
+
+# Rhino / Grasshopper build output (publish via GitHub Releases instead)
+*.rhp
+*.gha
+*.yak
+
+# JetBrains Rider / VS Code
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
