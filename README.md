@@ -6,7 +6,7 @@ Games, random events and weird tools for architects and designers who need a 5-m
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> ⚠️ **Status:** early development. Nothing is released yet. Ideas and contributors are very welcome!
+> ⚠️ **Status:** early development (v0.1). One component per host so far. Ideas and contributors are very welcome!
 
 ---
 
@@ -20,6 +20,14 @@ Ever been staring at a parametric definition for six hours and needed a break? D
 - 🎲 trigger a **random (harmless!) event** in your Rhino/Grasshopper window
 - 🧪 run a strange command that does something delightfully useless
 - 🤝 share a goofy component with your classmates or colleagues
+
+## What's in the box
+
+| Where | Name | What it does |
+|---|---|---|
+| Rhino | `ParamaniacsColors` command | Gives Rhino a random new color theme (viewport, grid, command line, crosshair). Choose **Restore** to go back. |
+| Grasshopper | **PARAMANIACS → Colors → Color Shuffle** | Gives the Grasshopper canvas a random new color theme when you press a Button. Connect `true` to *Restore* (or delete the component) to go back. |
+| Grasshopper | **PARAMANIACS → Colors → Chameleon** | Gives every component on the canvas its own random color. Press the Button again for new colors. Your definition is never changed. Connect `true` to *Restore* (or delete the component) to go back. |
 
 ## Ideas on the roadmap
 
@@ -37,10 +45,54 @@ These are only ideas — nothing is promised. Add yours in [Discussions](../../d
 
 ## Installation
 
-Not available yet. Once a release exists, you will be able to:
+Once a release exists:
 
-1. Download the latest `.rhp` / `.gha` from the [Releases](../../releases) page, **or**
-2. Install through Rhino's package manager (`PackageManager` command, search for **PARAMANIACS**).
+1. In Rhino, run the `PackageManager` command, search for **paramaniacs** and install it, **or**
+2. Download the latest `.yak` file from the [Releases](../../releases) page and install it with `yak install <file>`.
+
+Restart Rhino after installing.
+
+## Usage
+
+- **Rhino:** type `ParamaniacsColors` in the command line and press Enter.
+- **Grasshopper:** open the **PARAMANIACS** tab → **Colors** → **Color Shuffle**, connect a *Button* to `Run`, and press it.
+
+### Something looks weird and I want my colors back
+
+Run `ParamaniacsColors` and choose **Restore**. If Rhino ever crashes in the middle of a shuffle, open *Tools → Options → Appearance → Colors* and use **Restore Defaults**. Grasshopper colors only change in memory (and Chameleon only paints on top of the canvas), so restarting Grasshopper also resets them.
+
+## Building from source
+
+Requirements: Windows, Rhino 8, and the .NET SDK 8 (or Visual Studio 2022).
+
+```bash
+dotnet build Paramaniacs.sln
+```
+
+Then load the build in Rhino:
+
+- **Rhino plug-in:** drag `src/Paramaniacs.Rhino/bin/Debug/<framework>/Paramaniacs.Rhino.rhp` into Rhino.
+- **Grasshopper plug-in:** run `GrasshopperDeveloperSettings` in Rhino and add the folder `src/Paramaniacs.Grasshopper/bin/Debug/<framework>` to the list of loaded folders, then restart Rhino.
+
+To create the Yak package locally: `./scripts/package.ps1` (output goes to `dist/`).
+
+## Project structure
+
+```
+src/
+  Paramaniacs.Core/          Shared logic with no Rhino dependency (e.g. random color themes)
+  Paramaniacs.Rhino/         The Rhino plug-in (.rhp)
+    Commands/<Feature>/        one folder per command
+  Paramaniacs.Grasshopper/   The Grasshopper plug-in (.gha)
+    Components/
+      ParamaniacsComponent.cs    base class: every component inherits from it
+      SubCategories.cs           sections inside the PARAMANIACS tab
+      ColorShuffle/              one folder per component
+      Chameleon/
+yak/                         Yak package manifest
+scripts/                     Packaging script
+.github/workflows/           CI (build) and release (Yak + GitHub Release)
+```
 
 ## Safety promise 🛡️
 
