@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <Version>0.1.0</Version>
+    <Authors>PARAMANIACS contributors</Authors>
+    <Company>PARAMANIACS</Company>
+    <Product>PARAMANIACS</Product>
+    <Copyright>Copyright (c) 2026 PARAMANIACS Contributors</Copyright>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <NoWarn>$(NoWarn);NU1701</NoWarn>
+  </PropertyGroup>
+</Project>
