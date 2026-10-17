@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-windows;net48</TargetFrameworks>
+    <TargetExt>.gha</TargetExt>
+    <AssemblyName>Paramaniacs.Grasshopper</AssemblyName>
+    <RootNamespace>Paramaniacs.GrasshopperPlugin</RootNamespace>
+    <AssemblyTitle>PARAMANIACS</AssemblyTitle>
+    <Description>Fun, quirky and playful components for Grasshopper.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grasshopper" Version="8.0.23304.9001" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paramaniacs.Core\Paramaniacs.Core.csproj" />
+  </ItemGroup>
+</Project>

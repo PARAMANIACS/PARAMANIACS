@@ -1,0 +1,11 @@
+name: paramaniacs
+version: {{VERSION}}
+authors:
+  - PARAMANIACS contributors
+description: Fun, quirky and playful components for Rhino and Grasshopper - games, random events and weird tools for a 5-minute break.
+url: https://github.com/paramaniacs/paramaniacs
+keywords:
+  - fun
+  - games
+  - grasshopper
+  - rhino

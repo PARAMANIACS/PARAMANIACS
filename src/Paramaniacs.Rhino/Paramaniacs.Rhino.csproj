@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0-windows;net48</TargetFrameworks>
+    <TargetExt>.rhp</TargetExt>
+    <AssemblyName>Paramaniacs.Rhino</AssemblyName>
+    <RootNamespace>Paramaniacs.RhinoPlugin</RootNamespace>
+    <AssemblyTitle>PARAMANIACS</AssemblyTitle>
+    <Description>Fun, quirky and playful commands for Rhino.</Description>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RhinoCommon" Version="8.0.23304.9001" ExcludeAssets="runtime" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Paramaniacs.Core\Paramaniacs.Core.csproj" />
+  </ItemGroup>
+</Project>

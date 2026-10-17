@@ -1,0 +1,8 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Paramaniacs.Core</AssemblyName>
+    <RootNamespace>Paramaniacs.Core</RootNamespace>
+    <Description>Shared, Rhino-independent logic for PARAMANIACS.</Description>
+  </PropertyGroup>
+</Project>
