@@ -4,3 +4,15 @@
 
 # Scripts that must always use LF
 *.sh text eol=lf
+# Default behavior for text files
+
+# C# source files
+*.cs text eol=crlf
+
+# Project and configuration files
+*.csproj text eol=crlf
+*.sln text eol=crlf
+*.json text
+*.xml text
+*.yml text
+*.md text
