@@ -67,7 +67,29 @@ If your component is a prank or a "random event", add the label `needs-safety-re
 - Prefer simple, readable code over clever code.
 - Keep the code free of compiler warnings where possible.
 
-(Detailed project structure and build instructions will be added once the codebase is set up.)
+## Project structure
+
+```
+src/
+  Paramaniacs.Core/          Shared logic with no Rhino dependency
+  Paramaniacs.Rhino/         Rhino plug-in (.rhp)
+    Commands/<Feature>/        one folder per command
+  Paramaniacs.Grasshopper/   Grasshopper plug-in (.gha)
+    Components/
+      ParamaniacsComponent.cs    base class for all components
+      SubCategories.cs           sections inside the PARAMANIACS tab
+      <Feature>/                 one folder per component
+```
+
+See the [README](README.md#building-from-source) for how to build and load the plug-ins.
+
+### Adding a new component
+
+1. Put logic that doesn't need Rhino (game rules, random generators…) in `Paramaniacs.Core` so it can be reused and tested.
+2. **Rhino command:** create `src/Paramaniacs.Rhino/Commands/<YourFeature>/` and add a class that inherits from `Rhino.Commands.Command`.
+3. **Grasshopper component:** create `src/Paramaniacs.Grasshopper/Components/<YourFeature>/` and add a class that inherits from `ParamaniacsComponent` (not directly from `GH_Component`). Choose a section from `SubCategories` (add a new one if needed). Give it a **new unique GUID** for `ComponentGuid`.
+4. Keep every feature in its own folder and don't reference one feature's code from another.
+5. Follow the [safety rules](#safety-rules). Anything that changes colors, settings or the UI must remember the original values and offer a way to restore them.
 
 ## Licensing of contributions
 
